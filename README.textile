@@ -1,0 +1,28 @@
+h1. rspec-profiler
+
+The rspec-profiler is a custom formatter that adds functionality to the existing --profile option in
+rspec. The rspec-profiler first groups tests together by their folder under the spec directory
+(models, lib, controllers, etc...). Then the standarAd deviation is calculated. Any test within a
+group that is 2 or more standard deviations away from the mean is listed as slow.
+
+There are downsides of course to doing it this way. Obviously with a mean of .02 seconds and a
+standarddeviation of .01 seconds, a test that takes .04 seconds will be marked as slow when perhaps
+one wouldn't categorize that particular test as necessarily being slow. I will simply advise, as
+with any benchmark, to not take the results too seriously, rather, you should use the results as a
+means to identify tests that are unecessarily slow.
+
+h2. Installation
+
+1. Put the profiler in your @Gemfile@
+
+2. When running your specs use:
+
+bc. $ rspec --format Profiler -p spec
+
+Alternatively, you can make the Profiler formatter your default formatter by modify your @.rspec@
+file:
+
+bc. --format Profiler
+
+_Note_: The Profiler uses the same output as the progress formatter that is bundled with rspec. The
+performance profile will not display unless you specify the -p option when running rspec.
