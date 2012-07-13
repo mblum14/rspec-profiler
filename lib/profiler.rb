@@ -76,7 +76,7 @@ class Profiler < RSpec::Core::Formatters::BaseTextFormatter
 
     grouped_examples.each_with_index do |example, i|
       location = example.location.match(/\/spec\/.*$/)[0]
-      output.puts cyan("#{i+1}.\t#{format_time(example.execution_result[:run_time])}") + white("\t#{format_caller(location)}")
+      output.puts cyan("#{i+1}.\t#{format_time(example.execution_result[:run_time])}") + white(" \t#{format_caller(location)}")
     end
   end
 
@@ -97,12 +97,6 @@ class Profiler < RSpec::Core::Formatters::BaseTextFormatter
 
   def format_seconds(float)
     precision ||= (float < 1) ? SUB_SECOND_PRECISION : DEFAULT_PRECISION
-    formatted = sprintf("%.#{precision}f", float)
-    strip_trailing_zeroes(formatted)
-  end
-
-  def strip_trailing_zeroes(string)
-    stripped = string.sub(/[^1-9]+$/, '')
-    stripped.empty? ? "0" : stripped
+    sprintf("%.#{precision}f", float)
   end
 end
