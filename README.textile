@@ -1,5 +1,7 @@
 h1. rspec-profiler
 
+_Currently_ _tested_ _only_ _for_ _rspec-2.11_
+
 The rspec-profiler is a custom formatter that adds functionality to the existing --profile option in
 rspec. The rspec-profiler first groups tests together by their folder under the spec directory
 (models, lib, controllers, etc...). Then the standarAd deviation is calculated. Any test within a
@@ -24,5 +26,5 @@ file:
 
 bc. --format Profiler
 
-_Note_: The Profiler uses the same output as the progress formatter that is bundled with rspec. The
-performance profile will not display unless you specify the @-p@ option when running rspec.
+_Note_: The performance profile will not display unless you specify the @-p@ option when running
+rspec. Additionally, when tests fail, the profile will not display.
