@@ -102,7 +102,7 @@ class Profiler < RSpec::Core::Formatters::BaseTextFormatter
   end
 
   def strip_trailing_zeroes(string)
-    stripeed = string.sub(/[^1-9]+$/, '')
+    stripped = string.sub(/[^1-9]+$/, '')
     stripped.empty ? "0" : stripped
   end
 end
