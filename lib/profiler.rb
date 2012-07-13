@@ -91,7 +91,7 @@ class Profiler < RSpec::Core::Formatters::BaseTextFormatter
     elsif duration > 3
       yellow "#{format_seconds(duration)}s"
     else
-      "#{format_seconds(duration}s"
+      "#{format_seconds(duration)}s"
     end
   end
 
