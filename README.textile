@@ -25,4 +25,4 @@ file:
 bc. --format Profiler
 
 _Note_: The Profiler uses the same output as the progress formatter that is bundled with rspec. The
-performance profile will not display unless you specify the -p option when running rspec.
+performance profile will not display unless you specify the @-p@ option when running rspec.
