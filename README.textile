@@ -24,11 +24,11 @@ h2. Installation
 
 bc. $ rspec --format Profiler -p spec
 
-If for some reason rspec cannot find the Profiler, you case use the @-r@ option and provid the PATH
-to the Profiler.
+If for some reason rspec cannot find the Profiler, you case use the @-r@ option and provide the PATH
+to @profiler.rb@.
 
 Alternatively, you can make the Profiler formatter your default formatter by modifying your @.rspec@
-file:
+file (the Profiler inherits from the Progress formatter, you know, the one that uses the green dots):
 
 bc. --format Profiler
 
