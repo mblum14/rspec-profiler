@@ -58,6 +58,8 @@ class Profiler < RSpec::Core::Formatters::BaseTextFormatter
     end
   end
 
+  protected
+
   def print_report(grouped_examples, group_name)
     grouped_examples = grouped_examples.sort_by do |e|
       e.execution_result[:run_time]
@@ -99,4 +101,9 @@ class Profiler < RSpec::Core::Formatters::BaseTextFormatter
     precision ||= (float < 1) ? SUB_SECOND_PRECISION : DEFAULT_PRECISION
     sprintf("%.#{precision}f", float)
   end
+
+  def cyan(text)
+    color(text, "\e[36m")
+  end
+  
 end
