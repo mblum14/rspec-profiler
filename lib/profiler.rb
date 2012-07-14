@@ -1,6 +1,6 @@
 require 'rspec/core/formatters/base_text_formatter'
 
-class Array
+module Math::Array
   def summation
     self.inject(0){ |accum, i| accum + i }
   end
@@ -66,6 +66,7 @@ class Profiler < RSpec::Core::Formatters::BaseTextFormatter
     end.reverse
 
     times = grouped_examples.map { |e| e.execution_result[:run_time] }
+    times.extend Math::Array
     mean = times.mean
     stddev = times.standard_deviation
     k = 2
