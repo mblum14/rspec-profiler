@@ -4,14 +4,17 @@ _Currently_ _tested_ _only_ _for_ _rspec-2.11_
 
 The rspec-profiler is a custom formatter that adds functionality to the existing --profile option in
 rspec. The rspec-profiler first groups tests together by their folder under the spec directory
-(models, lib, controllers, etc...). Then the standarAd deviation is calculated. Any test within a
-group that is 2 or more standard deviations away from the mean is listed as slow.
+(models, lib, controllers, etc...). Then the standard deviation is calculated. Any test within a
+group that is 2 or more standard deviations away from the mean is listed.
 
 There are downsides of course to doing it this way. For example, with a mean of .02 seconds and a
-standard deviation of .01 seconds, a test that takes .04 seconds will be marked as 'slow' when perhaps
-one wouldn't categorize that particular test as necessarily being slow. I will simply advise, as
-with any benchmark, to not take the results too seriously. Rather, you should use the results as a
-way to identify tests that perhaps need to be looked at.
+standard deviation of .01 seconds, a test that takes .04 seconds will be listed when perhaps one
+wouldn't think a test that takes 0.04 seconds to complete to be in need of attention. I will simply
+advise, as with any benchmark, to not take the results too seriously. Rather, you should use the
+results as a way to identify tests that _may_ need to be looked at for performance issues. And, as
+always, running the benchmark multiple times will give you a better sense of the tests that are
+consistantly slow. A test may be benchmarked noticably slower in one trial due any number of reasons
+but run faster in the next.
 
 h2. Installation
 
