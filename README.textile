@@ -7,11 +7,11 @@ rspec. The rspec-profiler first groups tests together by their folder under the 
 (models, lib, controllers, etc...). Then the standarAd deviation is calculated. Any test within a
 group that is 2 or more standard deviations away from the mean is listed as slow.
 
-There are downsides of course to doing it this way. Obviously with a mean of .02 seconds and a
-standarddeviation of .01 seconds, a test that takes .04 seconds will be marked as slow when perhaps
+There are downsides of course to doing it this way. For example, with a mean of .02 seconds and a
+standard deviation of .01 seconds, a test that takes .04 seconds will be marked as 'slow' when perhaps
 one wouldn't categorize that particular test as necessarily being slow. I will simply advise, as
-with any benchmark, to not take the results too seriously, rather, you should use the results as a
-means to identify tests that are unecessarily slow.
+with any benchmark, to not take the results too seriously. Rather, you should use the results as a
+way to identify tests that perhaps need to be looked at.
 
 h2. Installation
 
@@ -21,10 +21,18 @@ h2. Installation
 
 bc. $ rspec --format Profiler -p spec
 
-Alternatively, you can make the Profiler formatter your default formatter by modify your @.rspec@
+If for some reason rspec cannot find the Profiler, you case use the @-r@ option and provid the PATH
+to the Profiler.
+
+Alternatively, you can make the Profiler formatter your default formatter by modifying your @.rspec@
 file:
 
 bc. --format Profiler
 
 _Note_: The performance profile will not display unless you specify the @-p@ option when running
-rspec. Additionally, when tests fail, the profile will not display.
+rspec. Additionally, when tests fail, the profile will not display which is consistant with how the
+bundled profiler works as well.
+
+_If you use Timecop_: If you use the timecop gem to freeze or change time be sure to also return the
+time after each of your tests. Not doing so will make it appear as if your tests are taking either
+far too long or have taken negative time to complete. 
