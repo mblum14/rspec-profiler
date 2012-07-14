@@ -72,7 +72,7 @@ class Profiler < RSpec::Core::Formatters::BaseTextFormatter
     grouped_examples.reject! { |e| e.execution_result[:run_time] < (mean + k * stddev) }
 
     output.puts "\n\nGroup: #{bold magenta(group_name.to_s.capitalize)}"
-    output.puts "#{bold red(grouped_examples.size)} of #{bold green(times.size)} spec(s) were significantly outside the standard devation"
+    output.puts "#{bold red(grouped_examples.size)} of #{bold green(times.size)} spec(s) were more than 2 standard deviations away from the mean"
     output.puts cyan "#{"Mean execution time:"} #{format_time(mean)}"
     output.puts cyan "#{"Standard Deviation:"} #{"%.5f" % stddev}"
 
