@@ -1,4 +1,4 @@
-require 'rspec/core/formatters/base_text_formatter'
+require 'rspec/core/formatters/progress_formatter'
 
 module Math::Array
   def summation
@@ -20,27 +20,7 @@ module Math::Array
   end
 end
 
-class Profiler < RSpec::Core::Formatters::BaseTextFormatter
-  def example_passed(example)
-    super(example)
-    output.print green('.')
-  end
-
-  def example_pending(example)
-    super(example)
-    output.print yellow('*')
-  end
-
-  def example_failed(example)
-    super(example)
-    output.print red('F')
-  end
-
-  def start_dump
-    super()
-    output.puts
-  end
-
+class Profiler < RSpec::Core::Formatters::ProgressFormatter
   def dump_profile
     groups = {}
     examples.each do |e|
