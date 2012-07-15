@@ -1,12 +1,12 @@
 require 'rspec/core/formatters/base_text_formatter'
 
 module Math::Array
-  def summation
+  def sum
     self.inject(0){ |accum, i| accum + i }
   end
 
   def mean
-    self.summation/self.length.to_f
+    self.sum/self.length.to_f
   end
 
   def sample_variance
