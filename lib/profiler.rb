@@ -1,4 +1,4 @@
-require 'rspec/core/formatters/base_text_formatter'
+require 'rspec/core/formatters/progress_formatter'
 
 module Math::Array
   def sum
@@ -20,7 +20,7 @@ module Math::Array
   end
 end
 
-class RSpec::Core::Formatters::BaseTextFormatter
+class Profiler < RSpec::Core::Formatters::ProgressFormatter
   def dump_profile
     groups = {}
     examples.each do |e|
@@ -68,17 +68,17 @@ class RSpec::Core::Formatters::BaseTextFormatter
       minutes = duration.to_i / 60
       seconds = duration - minutes * 60
 
-      red "#{minutes}m #{format_secs(seconds)}s"
+      red "#{minutes}m #{format_seconds(seconds)}s"
     elsif duration > 10
-      red "#{format_secs(duration)}s"
+      red "#{format_seconds(duration)}s"
     elsif duration > 3
-      yellow "#{format_secs(duration)}s"
+      yellow "#{format_seconds(duration)}s"
     else
-      "#{format_secs(duration)}s"
+      "#{format_seconds(duration)}s"
     end
   end
 
-  def format_secs(float)
+  def format_seconds(float)
     precision ||= (float < 1) ? SUB_SECOND_PRECISION : DEFAULT_PRECISION
     sprintf("%.#{precision}f", float)
   end
