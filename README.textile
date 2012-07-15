@@ -16,8 +16,8 @@ bc. $ rspec -p spec
 
 Alternatively, if you are not using bundler you can add to your @.rspec@ file the location of @profiler.rb@:
 
-bc. -r <path_to_gem>/lib/profiler.rb
+bc. -r <path_to_gem>/lib/profile.rb
 
-_Note_: When tests fail, the profile will not display which is consistant with how the bundled rspec profiler works.
+_Note_: When tests fail, the profile will not display which is consistant with how the bundled profiler works as well.
 
 _If you use Timecop_: If you use the timecop gem to freeze or change time be sure to also return the time after each of your tests. Not doing so will make it appear as if your tests are taking either far too long or have taken negative time to complete. 
