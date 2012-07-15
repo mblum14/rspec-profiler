@@ -2,40 +2,22 @@ h1. rspec-profiler
 
 _Currently_ _tested_ _only_ _for_ _rspec-2.11_
 
-The rspec-profiler is a custom formatter that adds functionality to the existing --profile option in
-rspec. The rspec-profiler first groups tests together by their folder under the spec directory
-(models, lib, controllers, etc...). Then the standard deviation is calculated. Any test within a
-group that is 2 or more standard deviations away from the mean is listed.
+The rspec-profiler overwrites the output of the default rspec profile. The rspec-profiler first groups tests together by their folder under the spec directory (models, lib, controllers, etc...). Then the standard deviation is calculated. Any test within a group that is 2 or more standard deviations away from the mean is listed.
 
-There are downsides of course to doing it this way. For example, with a mean of .02 seconds and a
-standard deviation of .01 seconds, a test that takes .04 seconds will be listed when perhaps one
-wouldn't think a test that takes 0.04 seconds to complete to be in need of attention. I will simply
-advise, as with any benchmark, to not take the results too seriously. Rather, you should use the
-results as a way to identify tests that _may_ need to be looked at for performance issues. And, as
-always, running the benchmark multiple times will give you a better sense of the tests that are
-consistantly slow. A test may be benchmarked noticably slower in one trial due any number of reasons
-but run faster in the next.
+There are downsides of course to doing it this way. For example, with a mean of .02 seconds and a standard deviation of .01 seconds, a test that takes .04 seconds will be listed when perhaps one wouldn't think a test that takes 0.04 seconds to complete to be in need of attention. I will simply advise, as with any benchmark, to not take the results too seriously. Rather, you should use the results as a way to identify tests that _may_ need to be looked at for performance issues. And, as always, running the benchmark multiple times will give you a better sense of the tests that are consistantly slow. A test may be benchmarked noticably slower in one trial due any number of reasons but run faster in the next.
 
 h2. Installation
 
-1. Put the profiler in your @Gemfile@
+1. Include the rspec-profiler in your @Gemfile@
 
-2. When running your specs use:
+2. When running your specs use the @-p@ flag
 
-bc. $ rspec --format Profiler -p spec
+bc. $ rspec -p spec
 
-If for some reason rspec cannot find the Profiler, you case use the @-r@ option and provide the PATH
-to @profiler.rb@.
+Alternatively, if you are not using bundler you can add to your @.rspec@ file the location of @profiler.rb@:
 
-Alternatively, you can make the Profiler formatter your default formatter by modifying your @.rspec@
-file (the Profiler inherits from the Progress formatter, you know, the one that uses the green dots):
+bc. -r <path_to_gem>/lib/profile.rb
 
-bc. --format Profiler
+_Note_: When tests fail, the profile will not display which is consistant with how the bundled profiler works as well.
 
-_Note_: The performance profile will not display unless you specify the @-p@ option when running
-rspec. Additionally, when tests fail, the profile will not display which is consistant with how the
-bundled profiler works as well.
-
-_If you use Timecop_: If you use the timecop gem to freeze or change time be sure to also return the
-time after each of your tests. Not doing so will make it appear as if your tests are taking either
-far too long or have taken negative time to complete. 
+_If you use Timecop_: If you use the timecop gem to freeze or change time be sure to also return the time after each of your tests. Not doing so will make it appear as if your tests are taking either far too long or have taken negative time to complete. 
