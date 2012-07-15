@@ -1,6 +1,6 @@
 h1. rspec-profiler
 
-_Currently_ _tested_ _only_ _for_ _rspec-2.11_
+_Currently_ _tested_ _with _rspec-2.8.0_ _and_ _above_
 
 The rspec-profiler is a custom formatter that adds functionality to the existing --profile option in
 rspec. The rspec-profiler first groups tests together by their folder under the spec directory
