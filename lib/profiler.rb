@@ -78,7 +78,7 @@ class Profiler < RSpec::Core::Formatters::ProgressFormatter
     end
   end
 
-  def format_seconds(float)
+  def format_seconds(float, precision = nil)
     precision ||= (float < 1) ? SUB_SECOND_PRECISION : DEFAULT_PRECISION
     sprintf("%.#{precision}f", float)
   end
@@ -86,5 +86,5 @@ class Profiler < RSpec::Core::Formatters::ProgressFormatter
   def cyan(text)
     color(text, "\e[36m")
   end
-  
+
 end
