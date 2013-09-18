@@ -52,14 +52,14 @@ class Profiler < RSpec::Core::Formatters::ProgressFormatter
     k = 2
     grouped_examples.reject! { |e| e.execution_result[:run_time] < (mean + k * stddev) }
 
-    output.puts "\n\nGroup: #{bold magenta(group_name.to_s.capitalize)}"
-    output.puts "#{bold red(grouped_examples.size)} of #{bold green(times.size)} spec(s) were 2 or greater standard deviations above the mean"
+    output.puts "\n\nGroup: #{bold default_color(group_name.to_s.capitalize)}"
+    output.puts "#{bold failure_color(grouped_examples.size)} of #{bold success_color(times.size)} spec(s) were 2 or greater standard deviations above the mean"
     output.puts cyan "#{"Mean execution time:"} #{format_time(mean)}"
     output.puts cyan "#{"Standard Deviation:"} #{"%.5f" % stddev}"
 
     grouped_examples.each_with_index do |example, i|
       location = example.location.match(/\/spec\/.*$/)[0]
-      output.puts cyan("#{i+1}.\t#{format_time(example.execution_result[:run_time])}") + white(" \t#{format_caller(location)}")
+      output.puts cyan("#{i+1}.\t#{format_time(example.execution_result[:run_time])}") + default_color(" \t#{format_caller(location)}")
     end
   end
 
