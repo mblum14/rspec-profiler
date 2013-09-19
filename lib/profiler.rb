@@ -68,11 +68,11 @@ class Profiler < RSpec::Core::Formatters::ProgressFormatter
       minutes = duration.to_i / 60
       seconds = duration - minutes * 60
 
-      red "#{minutes}m #{format_seconds(seconds)}s"
+      failure_color "#{minutes}m #{format_seconds(seconds)}s"
     elsif duration > 10
-      red "#{format_seconds(duration)}s"
+      failure_color "#{format_seconds(duration)}s"
     elsif duration > 3
-      yellow "#{format_seconds(duration)}s"
+      pending_color "#{format_seconds(duration)}s"
     else
       "#{format_seconds(duration)}s"
     end
